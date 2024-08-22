@@ -18,9 +18,9 @@ const io = new Server(server,{
 })
 
 /***
+ * 
  * socket running at http://localhost:8080/
  */
-
 //online user
 const onlineUser = new Set()
 
@@ -32,7 +32,7 @@ io.on('connection',async(socket)=>{
     //current user details 
     const user = await getUserDetailsFromToken(token)
 
-    //create a room
+    //create a room 
     socket.join(user?._id.toString())
     onlineUser.add(user?._id?.toString())
 
@@ -62,7 +62,6 @@ io.on('connection',async(socket)=>{
 
         socket.emit('message',getConversationMessage?.messages || [])
     })
-
 
     //new message
     socket.on('new message',async(data)=>{
